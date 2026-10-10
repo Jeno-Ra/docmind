@@ -10,3 +10,5 @@ wheels/
 .venv
 .env
 .env.*
+
+#本地密钥,禁止提交
