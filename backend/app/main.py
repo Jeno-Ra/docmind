@@ -17,11 +17,11 @@ def create_work(work: WorkCreate):
     _next_id += 1
     return record
 
-@app.get("/works")
+@app.get("/works",response_model=list[WorkResponse])
 def list_works(skip: int = 0, limit: int = 10):
     return {"skip": skip, "limit": limit}
 
-@app.get("/works/{work_id}")
+@app.get("/works/{work_id}",response_model=WorkResponse)
 def get_work(work_id: int):
     for w in _work:
         if w["id"] == work_id:
