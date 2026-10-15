@@ -19,7 +19,7 @@ def create_work(work: WorkCreate):
 
 @app.get("/works",response_model=list[WorkResponse])
 def list_works(skip: int = 0, limit: int = 10):
-    return {"skip": skip + limit}
+    return _work[skip : skip + limit]
 
 @app.get("/works/{work_id}",response_model=WorkResponse)
 def get_work(work_id: int):
