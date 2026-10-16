@@ -10,3 +10,12 @@ class WorkCreate(BaseModel):
 class WorkResponse(WorkCreate):
     """返回给客户端的作品：多一个服务端生成的id"""
     id: int
+
+class AskRequest(BaseModel):
+    """用户提问"""
+    question: str = Field(...,min_length=1,max_length=500,description="用户的问题")
+
+class AskResponse(BaseModel):
+    """问题结果"""
+    answer: str = Field(...,description="回答内容")
+    sources: list = Field(default_factory=list,description="答案引用的作品 id")

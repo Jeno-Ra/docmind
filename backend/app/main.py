@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
-from backend.app.schemas import WorkCreate,WorkResponse
+from backend.app.schemas import WorkCreate,WorkResponse,AskRequest,AskResponse
+
 app = FastAPI(title="PortfolioHub API", version="0.1.0")
 
 #内版本储存：进程重启就清空
@@ -27,3 +28,6 @@ def get_work(work_id: int):
         if w["id"] == work_id:
             return w
     raise HTTPException(status_code=404, detail="作品不存在")
+@app.post("/ask",response_model=AskResponse)
+def ask(req: AskRequest):
+    return AskResponse(answer=f"(假答案)当前尚未接入检索，暂时无法回答:{req.question}")
